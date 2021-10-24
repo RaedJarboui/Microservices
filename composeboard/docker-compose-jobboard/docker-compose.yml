@@ -4,12 +4,7 @@ services:
     build: ../../Eureka
     ports:
     - "8761:8761"
-    image: "discovery-service"
-  
-      
-   
-  
-    
+    image: "discovery-service"  
   candidate_C:
     build:  ../../candidateMS
     environment: 
@@ -37,11 +32,28 @@ services:
     - spring.datasource.password=
     - spring.datasource.driver-class-name=org.h2.Driver
     - spring.jpa.hibernate.ddl-auto=update
-    - spring.h2.console.settings.web-allow-others=true
-    
+    - spring.h2.console.settings.web-allow-others=true  
     ports:
     - "3002:8080"
     image: "aero-service"   
+  personnel:
+    build:  ../../personnel
+    environment: 
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+      - spring.h2.console.enabled=true
+      - spring.h2.console.path=/h2
+      - spring.datasource.url=jdbc:h2:mem:personneldb;DB_CLOSE_DELAY=-1
+      - spring.datasource.username=sa
+      - spring.datasource.password=
+      - spring.datasource.driver-class-name=org.h2.Driver
+      - spring.jpa.hibernate.ddl-auto=update
+      - spring.h2.console.settings.web-allow-others=true
+    ports:
+      - "3000:8081"
+    image: "personnel-service"
+ 
+  
+    
       
       
  
