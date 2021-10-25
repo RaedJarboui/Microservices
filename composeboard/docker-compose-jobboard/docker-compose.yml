@@ -30,7 +30,7 @@ services:
     depends_on:
       - "Eureka"
       - "Mongo"
-    command: "node ./src/app.js"
+    command: "node clients/clients.js"
   Aero:
     build: ../../Aero
     environment:
