@@ -1,48 +1,48 @@
 version: "3.9"
 services:
-  discovery:  
+  discovery:
     build: ../../Eureka
     ports:
-    - "8761:8761"
+      - "8761:8761"
     image: "discovery-service"
-  
-      
-   
-  
-    
-  candidate_C:
-    build:  ../../candidateMS
-    environment: 
-      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
-      - spring.cloud.config.uri=http://config:8888
-    ports:
-      - "3001:8080"
-    image: "candidate-service"
   zuul:
     build: ../../zuul-server
-    environment: 
+    environment:
       - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
     ports:
       - "8762:8762"
-    image: "gateway-server" 
-    
+    image: "gateway-server"
+  Mongo:
+    container_name: Mongo
+    image: "mongo:5-focal"
+    ports:
+      - "27017:27017"
+    hostname: Mongo
+    depends_on:
+      - "Eureka"
+  client:
+    container_name: client
+    image: "client"
+    build: ../../ClientMS
+    ports:
+      - "3939:3939"
+    hostname: client
+    depends_on:
+      - "Eureka"
+      - "Mongo"
+    command: "node ./src/app.js"
   Aero:
     build: ../../Aero
     environment:
-    - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
-    - spring.h2.console.enabled=true
-    - spring.h2.console.path=/h2
-    - spring.datasource.url=jdbc:h2:file:~/test
-    - spring.datasource.username=root
-    - spring.datasource.password=
-    - spring.datasource.driver-class-name=org.h2.Driver
-    - spring.jpa.hibernate.ddl-auto=update
-    - spring.h2.console.settings.web-allow-others=true
-    
+      - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+      - spring.h2.console.enabled=true
+      - spring.h2.console.path=/h2
+      - spring.datasource.url=jdbc:h2:file:~/test
+      - spring.datasource.username=root
+      - spring.datasource.password=
+      - spring.datasource.driver-class-name=org.h2.Driver
+      - spring.jpa.hibernate.ddl-auto=update
+      - spring.h2.console.settings.web-allow-others=true
     ports:
-    - "3002:8080"
-    image: "aero-service"   
-      
-      
- 
-  
+      - "3002:8080"
+    image: "aero-service"
