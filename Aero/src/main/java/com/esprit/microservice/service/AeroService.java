@@ -58,5 +58,9 @@ public class AeroService {
 			return null;
 
 	}
+	public Aero getAeroById(int id) {
+		Aero aero= aeroRepository.findById(id).get();
+		return aero;
+	}
 
 }

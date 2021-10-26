@@ -54,6 +54,13 @@ public class AeroController {
 		return aeroService.updateAero(id, a);
 	}
 
+	@GetMapping("/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Aero getAeroById(@PathVariable(value = "id") int id) {
+
+		return aeroService.getAeroById(id);
+	}
+
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> deleteAero(@PathVariable(value = "id") int id) {
