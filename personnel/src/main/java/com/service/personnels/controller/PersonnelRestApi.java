@@ -47,11 +47,12 @@ public class PersonnelRestApi {
 		return new ResponseEntity<>(personnelService.getPersonnelById(id), HttpStatus.OK);
 	}
 
-	/*
-	 * @GetMapping(value="/getAllpersonnels")
-	 * @ResponseStatus(HttpStatus.OK) public ResponseEntity<Personnel> getAllPersonnel(){ return new
-	 * ResponseEntity<>(personnelService.getAllPersonnel(),HttpStatus.OK); }
-	 */
+	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<List<Personnel>> getAeros(@RequestBody Personnel personnel) {
+		return new ResponseEntity<>(personnelService.getallPersonnel(), HttpStatus.OK);
+	}
+
 
 	@PutMapping(value = "personnel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
