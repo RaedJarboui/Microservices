@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.esprit.microservice.entity.Aero;
 import com.esprit.microservice.service.AeroService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/aero")
 public class AeroController {
@@ -42,7 +44,7 @@ public class AeroController {
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<List<Aero>> getAeros(@RequestBody Aero a) {
+	public ResponseEntity<List<Aero>> getAeros() {
 
 		return new ResponseEntity<>(aeroService.getAllAero(), HttpStatus.OK);
 	}
@@ -55,10 +57,16 @@ public class AeroController {
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<String> deleteAero(@PathVariable(value = "id") int id) {
+	public void deleteAero(@PathVariable(value = "id") int id) {
 
-		return new ResponseEntity<String>(aeroService.deleteAero(id), HttpStatus.OK);
+		aeroService.deleteAero(id);
+	}
+
+	@GetMapping(value = "/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<Aero> getAeroById(@PathVariable("id") int id) {
+
+		return new ResponseEntity<>(aeroService.AeroById(id), HttpStatus.OK);
 	}
 
 }

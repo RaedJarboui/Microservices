@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8761
-ADD /target/eureka-discovery-server-0.0.1-SNAPSHOT.jar docker-service-eureka.jar
-ENTRYPOINT ["java", "-jar", "docker-service-eureka.jar"]
+ADD /target/Eureka-0.0.1-SNAPSHOT.jar Eureka-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","Eureka-0.0.1-SNAPSHOT.jar"]
