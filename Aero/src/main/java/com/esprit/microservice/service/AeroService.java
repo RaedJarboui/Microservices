@@ -34,14 +34,10 @@ public class AeroService {
 		return aeroRepository.findAll();
 	}
 
-	public String deleteAero(int id) {
+	public void deleteAero(int id) {
 
-		if (aeroRepository.findById(id).isPresent()) {
-			aeroRepository.deleteById(id);
-			return "aero supprimé";
-		}
-		else
-			return " aero non supprimé";
+		aeroRepository.deleteById(id);
+
 	}
 
 	public Aero updateAero(int id, Aero a) {
