@@ -1,0 +1,5 @@
+com\service\personnels\controller\PersonnelRestApi.class
+com\service\personnels\Repositorie\PersonnelRepository.class
+com\service\personnels\entities\Personnel.class
+com\service\personnels\PersonnelApplication.class
+com\service\personnels\Service\PersonnelService.class
