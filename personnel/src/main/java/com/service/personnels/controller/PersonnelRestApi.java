@@ -1,5 +1,7 @@
 package com.service.personnels.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,10 +20,10 @@ import com.service.personnels.Service.PersonnelService;
 import com.service.personnels.entities.Personnel;
 
 @RestController
-// @RequestMapping(value = "/api/personnels")
+@RequestMapping(value = "api/personnels")
 public class PersonnelRestApi {
 
-	private String title = "Hello,I'm the aero Microservice";
+	private String title = "Hello,I'm the Personnel Microservice";
 
 	@Autowired
 	private PersonnelService personnelService;
@@ -40,7 +42,7 @@ public class PersonnelRestApi {
 		return new ResponseEntity<>(personnelService.addPersonnel(personnel), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "personnel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Personnel> getPersonnelById(@PathVariable("id") int id) {
 
@@ -50,11 +52,11 @@ public class PersonnelRestApi {
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<List<Personnel>> getAeros(@RequestBody Personnel personnel) {
-		return new ResponseEntity<>(personnelService.getallPersonnel(), HttpStatus.OK);
+		return new ResponseEntity<>(personnelService.getAllPersonnel(), HttpStatus.OK);
 	}
 
 
-	@PutMapping(value = "personnel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<Personnel> updatePersonnel(@PathVariable(value = "id") int id,
 			@RequestBody Personnel personnel) {
@@ -62,7 +64,7 @@ public class PersonnelRestApi {
 		return new ResponseEntity<>(personnelService.updatePersonnel(id, personnel), HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "personnel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> deletepersonnel(@PathVariable(value = "id") int id) {
 
