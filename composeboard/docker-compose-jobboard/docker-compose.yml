@@ -20,7 +20,7 @@ services:
     - spring.h2.console.settings.web-allow-others=true
      
     ports:
-      - "3000:8080"
+      - "3000:8580"
     image: "personnel-service"    
    
   zuul:
@@ -48,6 +48,25 @@ services:
     - "3002:8080"
     image: "aero-service"   
       
+      
+     
+ 
+  reservation:
+    build: ../../ReservationMS
+    environment:
+    - eureka.client.serviceUrl.defaultZone=http://discovery:8761/eureka/
+    - spring.h2.console.enabled=true
+    - spring.h2.console.path=/h2
+    - spring.datasource.url=jdbc:h2:file:./Database/Data/Reservation;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    - spring.datasource.username=root
+    - spring.datasource.password=
+    - spring.datasource.driver-class-name=org.h2.Driver
+    - spring.jpa.hibernate.ddl-auto=update
+    - spring.h2.console.settings.web-allow-others=true
+    
+    ports:
+    - "3005:8780"
+    image: "reservation-service"   
       
  
   
