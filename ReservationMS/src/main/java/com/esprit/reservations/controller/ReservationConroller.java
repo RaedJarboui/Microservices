@@ -16,7 +16,7 @@ import com.esprit.reservations.entity.Reservation;
 import com.esprit.reservations.service.ReservationRestAPI;
 
 @RestController
-@RequestMapping("api/reservation")
+@RequestMapping("api/reservations")
 public class ReservationConroller {
 	
 	@Autowired
