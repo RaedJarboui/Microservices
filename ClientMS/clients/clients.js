@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const dbUrl = "mongodb://localhost:27017/ClientService";
+const dbUrl = "mongodb://Mongo:27017/ClientService";
 const dbClient = new MongoClient(dbUrl, { useNewUrlParser: true });
 
 dbClient.connect((err) => {
