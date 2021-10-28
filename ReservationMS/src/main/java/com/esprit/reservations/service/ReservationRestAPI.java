@@ -49,4 +49,11 @@ public class ReservationRestAPI {
 			return "Reservation n'existe pas";
 		}
 	}
+	
+
+
+	public List<Reservation> getAllReservation() {
+		List<Reservation> reservations= reservationRepository.findAll();
+		return reservations;
+	}
 }	
