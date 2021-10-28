@@ -1,5 +1,0 @@
-com\esprit\reservations\controller\ReservationConroller.class
-com\esprit\reservations\entity\Reservation.class
-com\esprit\reservations\ReservationMsApplication.class
-com\esprit\reservations\repository\ReservationRepository.class
-com\esprit\reservations\service\ReservationRestAPI.class
